@@ -1,0 +1,17 @@
+[project]
+name = "simple-reverse-proxy"
+version = "0.1.0"
+description = "A simple HTTP reverse proxy server"
+readme = "README.md"
+authors = [
+    { name = "Yanbin Qiu", email = "yabqiu@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = ["aiohttp>=3.9"]
+
+[project.scripts]
+simple-reverse-proxy = "simple_reverse_proxy.proxy:main"
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
