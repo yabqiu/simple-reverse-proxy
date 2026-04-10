@@ -241,6 +241,14 @@ def _setup_logging(log_file: str) -> None:
     _file_logger.propagate = False
     fh = logging.FileHandler(log_file, encoding="utf-8")
     fh.setFormatter(logging.Formatter("%(message)s"))
+    fh.terminator = "\n"
+    original_emit = fh.emit
+
+    def emit_and_flush(record: logging.LogRecord) -> None:
+        original_emit(record)
+        fh.flush()
+
+    fh.emit = emit_and_flush  # type: ignore[method-assign]
     _file_logger.addHandler(fh)
 
 
